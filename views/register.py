@@ -1,14 +1,12 @@
 # 用于注册的路由
 from flask import render_template, request, Blueprint
-from db_tools.login_data_master import Login_data_master
-from db_tools.register_data_master import Register_data_master
 from my_tools import generate_token
 
 register_blue = Blueprint("register_blue", __name__)
 
 
 @register_blue.route('/register/', methods=['GET'])
-def register():
+def register_get():
     # if request.method == 'POST':
     #   pass
 
@@ -17,13 +15,13 @@ def register():
 
 # 用于注册的路由，确切地说是接收注册参数的路由
 @register_blue.route('/register/', methods=['POST'])
-def text():
+def register_post():
     email = request.form['email']
-    ldm = Login_data_master("login.db")
+    from app import ldm
     if ldm.get_email(email):
         return "用户已注册"
 
-    remt = Register_data_master("register.db")
+    from app import remt
     g_t = remt.get_code_byEmail(email)
 
     if g_t == "":

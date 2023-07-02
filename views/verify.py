@@ -1,7 +1,6 @@
 # 用于 邮箱验证的路由函数
 from flask import request, render_template, Blueprint
 
-from db_tools.login_data_master import Login_data_master
 from my_tools import is_register_code_right, creat_user
 
 verify_blue = Blueprint("verify_blue", __name__)
@@ -13,7 +12,7 @@ def token(email):
         authcode = request.form["Captcha"]
         password = request.form["password"]
         username = request.form["username"]
-        ldm = Login_data_master("login.db")
+        from app import ldm
         if ldm.get_email(email):
             return "用户已注册"
 

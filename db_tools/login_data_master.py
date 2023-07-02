@@ -1,15 +1,13 @@
 from db_tools.data_master import Data_master
 
-fist_table_name = "USER"
-
 
 class Login_data_master(Data_master):
     def get_email(self, email):
-        # cursor = self.cur.execute(
-        #     """select * from {} where email = '{}';""".format(self.table_name, email)
-        # )
-        print("{}".format(self.table_name)+"pppp")
-        cursor = self.cur.execute("SELECT * FROM {} WHERE email = ?;".format(self.table_name), (email,))
+        cursor = self.cur.execute(
+            """select * from {} where email = '{}';""".format(self.table_name, email)
+        )
+        # print("{}".format(self.table_name) + "pppp")
+        # cursor = self.cur.execute("SELECT * FROM {} WHERE email = ?;".format(self.table_name), (email,))
 
         print("查询到以下数据")
         code = ''
@@ -62,7 +60,7 @@ class Login_data_master(Data_master):
             self.connection.commit()
             print("数据插入成功")
         except Exception as e:
-            if not self.is_table_live(self.table_name):
+            if not self.is_table_live():
                 self.creat_table()
                 self.data_in(email, user_name, password)
                 print("似乎好像出了点错 ")

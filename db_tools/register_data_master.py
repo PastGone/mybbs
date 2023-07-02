@@ -41,7 +41,7 @@ class Register_data_master(Data_master):
             self.connection.commit()
             print("数据插入成功")
         except Exception as e:
-            if not self.is_table_live(self.table_name):
+            if not self.is_table_live():
                 self.creat_table()
                 self.data_in(email, code)
             print(e)

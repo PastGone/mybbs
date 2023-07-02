@@ -7,7 +7,7 @@ login_blue = Blueprint("login_blue", __name__)
 
 # 用于登录的路由
 @login_blue.route('/login/', methods=['GET', 'POST'])
-def blueprint():
+def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']

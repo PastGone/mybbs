@@ -7,8 +7,6 @@
 # ip = socket.gethostbyname(hostname)
 # print(ip)
 # 下面是获取局网IP的方法
-from db_tools.login_data_master import Login_data_master
-from db_tools.register_data_master import Register_data_master
 
 
 def getHostname():
@@ -34,15 +32,15 @@ def creat_user(email, username, password):
 
 
 def is_password_right(email: str, pwd1: str) -> bool:
-    lmt = Login_data_master("login.db")
-    pwd = lmt.get_password_by_email(email)
+    from app import ldm
+    pwd = ldm.get_password_by_email(email)
     if pwd == pwd1:
         return True
     return False
 
 
 def is_register_code_right(email, Captcha):
-    remt = Register_data_master("register.db")
+    from app import remt
     g_t = remt.get_code_byEmail(email)
     if Captcha == g_t:
         remt.delete_by_email(email)
