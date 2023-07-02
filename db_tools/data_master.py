@@ -1,6 +1,5 @@
 import sqlite3
-
-fist_table_name = "USER"
+fist_table_name = ""
 
 
 # 数据库管理的父类，名曰数据大师
@@ -25,9 +24,9 @@ class Data_master:
         self.connection.close()
 
     # 判断数据表是否存在
-    def is_table_live(self, table_name=fist_table_name):
+    def is_table_live(self):
         cursor = self.cur.execute(
-            '''select count(*)  from sqlite_master where type='table' and name = '{}';'''.format(table_name)
+            '''select count(*)  from sqlite_master where type='table' and name = '{}';'''.format(self.table_name)
         )
         a = 0
         for row in cursor:
@@ -38,8 +37,8 @@ class Data_master:
         else:
             return False
 
-    def get_table(self, table_name=fist_table_name):
-        cursor = self.cur.execute("SELECT *  from {}".format(table_name))
+    def get_table(self):
+        cursor = self.cur.execute("SELECT *  from {}".format(self.table_name))
         for row in cursor:
             print(row)
 
