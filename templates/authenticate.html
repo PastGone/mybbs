@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>验证页</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+        form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            margin: 50px auto auto;
+        }
+        input[type="text"],input[type="password"], input[type="email"] {
+            display: block;
+            margin-bottom: 10px;
+            width: 98%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #333;
+        }
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        input[type="submit"]:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+
+</head>
+<body>
+<form method="POST" >
+        <h2>注册设置</h2>
+        <label for="Captcha">验证码</label>
+        <input type="text" id="Captcha" name="Captcha" placeholder="请输入验证码" required>
+        <label for="username">用户名</label>
+        <input type="text" id="username" name="username" placeholder="请输入用户名" required>
+        <label for="password">登录密码:</label>
+        <input type="password" id="password" name="password" placeholder="请设置登录密码" required>
+        <input type="submit" value="完成注册">
+
+    </form>
+</body>
+</html>
