@@ -1,5 +1,6 @@
 # 数据管理大师子类，注册数据管理大师
 from db_tools.data_master import Data_master
+
 fist_table_name = "USER"
 
 
@@ -8,7 +9,7 @@ class Register_data_master(Data_master):
     def get_code_byEmail(self, email: str):
 
         cursor = self.cur.execute(
-            """select * from {} where email = '{}';""".format(self.table_name,email)
+            """select * from {} where EMAIL = '{}';""".format(self.table_name, email)
         )
         print("查询到以下数据")
         code = ''
@@ -36,18 +37,15 @@ class Register_data_master(Data_master):
         try:
             self.cur.execute(
                 """INSERT INTO {} (EMAIL,CODE) \
-                      VALUES ('{}','{}')""".format(self.table_name,email, code)
+                      VALUES ('{}','{}')""".format(self.table_name, email, code)
             )
             self.connection.commit()
             print("数据插入成功")
         except Exception as e:
-            if not self.is_table_live():
-                self.creat_table()
-                self.data_in(email, code)
             print(e)
 
     def delete_by_email(self, email):
-        a = self.cur.execute("DELETE from {} where EMAIL = '{}';".format(self.table_name,email))
+        a = self.cur.execute("DELETE from {} where EMAIL = '{}';".format(self.table_name, email))
 
         # 注意SQL Lite之中的列名大小写,似乎不区分
         self.connection.commit()

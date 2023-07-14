@@ -1,8 +1,7 @@
 # 导入简单的数据库的库
 from db_tools.login_data_master import Login_data_master
 from db_tools.register_data_master import Register_data_master
-
-fist_table_name = "USER"
+from db_tools.zone_data_master import Zone_data_master
 
 
 # temporary
@@ -26,9 +25,16 @@ def test2():
     print(ldm.get_password_by_email("2735956898@qq.com"))
 
 
+def test3():
+    zdm = Zone_data_master("../db/BBS.db", "zone")
+    zdm.data_in("gggg", 666)
+    zdm.get_zone()
+
+
 # 下面的部分用来测试用例保证 该类工具 的健全性
 if __name__ == "__main__":
-    test1()
-    test2()
-    #
+    # test1()
+    # test2()
+    # #
+    test3()
     pass

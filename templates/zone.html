@@ -2,10 +2,76 @@
 <html lang="zh">
 <head>
     <meta charset="UTF-8">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table caption {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 1em 0;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        table thead tr {
+            background-color: #008c8c;
+            color: #fff;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tbody tr:hover {
+            background-color: #ccc;
+        }
+
+        table tbody tr td:first-child {
+            color: #f40;
+        }
+
+        table tfoot tr td {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+    </style>
     <title>分区</title>
 </head>
 <body>
 <h2>{{email}}</h2>
 <h3>{{is_ok}}</h3>
+<!--以下是对你提供的代码段进行的优化：-->
+
+
+<table>
+    <thead>
+    <td>分区</td>
+    <td>区id</td>
+    <td>贴子数</td>
+    <td>创建时间</td>
+    </thead>
+    {% for zone_msg in zone_list %}
+    {% set name, id, count, create_time = zone_msg %}
+    <tr>
+        <td>{{ name }}</td>
+        <td>{{ id }}</td>
+        <td>{{ count }}</td>
+        <td>{{ create_time }}</td>
+    </tr>
+    {% endfor %}
+
+
+</table>
+
+
+</p>
 </body>
 </html>

@@ -60,10 +60,7 @@ class Login_data_master(Data_master):
             self.connection.commit()
             print("数据插入成功")
         except Exception as e:
-            if not self.is_table_live():
-                self.creat_table()
-                self.data_in(email, user_name, password)
-                print("似乎好像出了点错 ")
+            print("似乎好像出了点错 ")
             print(e)
 
     def delete_by_email(self, email):

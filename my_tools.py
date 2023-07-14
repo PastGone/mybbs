@@ -7,6 +7,30 @@
 # ip = socket.gethostbyname(hostname)
 # print(ip)
 # 下面是获取局网IP的方法
+# 该函数的作用是在另一个线程之中发送邮件
+
+def send_async_email(myapp, mail, msg):
+    with myapp.app_context():
+        mail.send(msg)
+
+
+# 发送邮件的函数，如果开启多线程时或者发送邮件时出错可以尝试更换网络以解决问题
+def send_email(email: str, mytoken: str, app, mail):
+    from flask_mail import Message
+    from threading import Thread
+    message = Message('来自繁星bbs的通知。', recipients=[email])
+    # 注意下面调用了获取局域网IP地址的函数
+    url = getHostname() + ":5000/token/" + email
+
+    message.body = '''点击以下链接填写验证码以注册用户:{} 
+    <a href="http://{}">账户激活</a>'''.format(mytoken, url)
+
+    try:
+        thread = Thread(target=send_async_email, args=[app, mail, message])
+        thread.start()
+        return '验证码已发送到您的邮箱'
+    except Exception as e:
+        return str(e)
 
 
 def getHostname():

@@ -19,4 +19,3 @@ def login():
             return 'Login Successful!'
 
     return render_template("login.html")
-

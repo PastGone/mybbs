@@ -1,15 +1,18 @@
 import sqlite3
-fist_table_name = ""
 
 
 # 数据库管理的父类，名曰数据大师
 class Data_master:
     # 初始化方法，需要数据库名称
-    def __init__(self, db_name, table_name=fist_table_name):
+    def __init__(self, db_name, table_name=''):
+        if table_name == '':
+            print("必须指定表的名称才能初始化类")
         self.connection = sqlite3.connect(db_name, check_same_thread=False)
         self.cur = self.connection.cursor()
         self.db_name = db_name
         self.table_name = table_name
+        if not self.is_table_live():
+            self.creat_table()
 
     # 作为字符串处理的代码
     def __str__(self):
