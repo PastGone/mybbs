@@ -1,49 +1,153 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh">
 <head>
     <title>起始页</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
         }
+
         .container {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
             height: 100vh;
         }
+
         h1 {
             margin-bottom: 50px;
             text-align: center;
             color: #333;
         }
+
         .btn {
             text-decoration: none;
-            padding: 10px 20px;
             border: none;
             border-radius: 5px;
-            font-size: 16px;
-            cursor: pointer;
-            margin-bottom: 10px;
-            width: 200px;
+            font-size: 20px;
             background-color: #4CAF50;
             color: #fff;
+            text-align: center;
         }
+
         .btn:hover {
             background-color: #3e8e41;
         }
+
+        #html_head {
+            display: flex;
+            flex-wrap: wrap;
+            height: 10vh;
+            width: 100vw;
+            justify-items: center;
+            align-items: center;
+            background-image: url("https://upload-bbs.miyoushe.com/upload/2021/08/13/271993388/8f3c3629300aab99a6ebbb123784595f_2151227287318520880.jpg?x-oss-process=image//resize,s_500/quality,q_80/auto-orient,0/interlace,1/format,jpg");
+
+        }
+
+        #btn_box {
+            height: 100%;
+            margin-left: auto;
+
+            justify-items: center;
+            align-items: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table caption {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 1em 0;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        table thead tr {
+            background-color: #008c8c;
+            color: #fff;
+        }
+
+        table tbody tr:nth-child(odd) {
+            background-color: #eee;
+        }
+
+        table tbody tr:hover {
+            background-color: #ccc;
+        }
+
+        table tbody tr td:first-child {
+            color: #f40;
+        }
+
+        table tfoot tr td {
+            text-align: right;
+            padding-right: 20px;
+        }
+
+
     </style>
+
 </head>
 <body>
-    <div class="container">
+<div class="container">
+    <div id="html_head">
         <h1>欢迎来到我们的网站</h1>
-        <a href="/register/" class="btn">注册</a>
-        <a href="/login/" class="btn">登录</a>
-        <a href="/zone/" class="btn">分区</a>
+        <div id="btn_box">
+            <a href="/register/" class="btn">注册</a>
+            <a href="/login/" class="btn">登录</a>
+
+
+        </div>
+
     </div>
+    <div>
+        <h2>{{email}}</h2>
+        <h3>{{is_ok}}</h3>
+        <!--以下是对你提供的代码段进行的优化：-->
+
+
+        <table>
+            <thead>
+
+            <tr>
+                <td>分区</td>
+                <td>区id</td>
+                <td>贴子数</td>
+                <td>创建时间</td>
+            </tr>
+
+            </thead>
+            {% for zone_msg in zone_list %}
+            {% set name, id, count, create_time = zone_msg %}
+            <a href="/post_list/">
+                <tr>
+                    <td>{{ name }}</td>
+                    <td>{{ id }}</td>
+                    <td>{{ count }}</td>
+                    <td>{{ create_time }}</td>
+                </tr>
+                {% endfor %}
+            </a>
+
+
+        </table>
+    </div>
+
+</div>
 </body>
 </html>

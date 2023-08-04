@@ -3,6 +3,15 @@ import sqlite3
 
 # 数据库管理的父类，名曰数据大师
 class Data_master:
+    instance = None  # 类属性做一个标识
+
+    def __new__(cls, *args, **kwargs):
+        if not cls.instance:  # 如果instance为假，则创建一个实例
+            cls.instance = super().__new__(cls)
+
+        return cls.instance
+
+
     # 初始化方法，需要数据库名称
     def __init__(self, db_name, table_name=''):
         if table_name == '':

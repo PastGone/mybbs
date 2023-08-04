@@ -58,11 +58,11 @@ def test5():
 # 下面的部分用来测试用例保证 该类工具 的健全性
 if __name__ == "__main__":
     # test1()
-    test2()
+    # test2()
     # #
-    # test3()
+    test3()
     pass
 
     # test4()
     pass
-    test5()
+    # test5()

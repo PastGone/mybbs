@@ -17,5 +17,7 @@ def login():
             session["email"] = username
             session["is_ok"] = True
             return 'Login Successful!'
+        else:
+            return "账户异常请重新登录"
 
     return render_template("login.html")
