@@ -134,20 +134,26 @@
             </thead>
             {% for zone_msg in zone_list %}
             {% set name, id, count, create_time = zone_msg %}
-            <a href="/post_list/">
-                <tr>
-                    <td>{{ name }}</td>
-                    <td>{{ id }}</td>
-                    <td>{{ count }}</td>
-                    <td>{{ create_time }}</td>
-                </tr>
-                {% endfor %}
-            </a>
+
+            <tr onclick="goto({{ id }});">
+                <td>{{ name }}</td>
+                <td>{{ id }}</td>
+                <td>{{ count }}</td>
+                <td>{{ create_time }}</td>
+            </tr>
+            {% endfor %}
 
 
         </table>
     </div>
 
 </div>
+<script>
+    function goto(id) {
+        window.location.href = "/post_list/zone_id="+id+"/";
+    }
+
+
+</script>
 </body>
 </html>
