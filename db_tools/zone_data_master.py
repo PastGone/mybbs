@@ -2,6 +2,12 @@ from db_tools.data_master import Data_master
 
 
 class Zone_data_master(Data_master):
+    # 初始化方法，需要数据库名称
+    def __init__(self, db_name, table_name='zone'):
+        self.db_name = db_name
+        self.table_name = table_name
+        self.continue_init()
+
     def creat_table(self):
         self.cur.execute(
             '''CREATE TABLE IF NOT EXISTS {} 

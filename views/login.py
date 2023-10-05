@@ -1,4 +1,4 @@
-from flask import Blueprint, request, session, render_template
+from flask import Blueprint, request, session, render_template,Response
 
 from my_tools import is_password_right
 
@@ -14,9 +14,16 @@ def login():
         with open('user_data.txt', 'a') as f:
             f.write('username: {}, password: {}\n'.format(username, password))
         if is_password_right(username, password):
+
             session["email"] = username
             session["is_ok"] = True
-            return 'Login Successful!'
+
+            resp = Response('Login Successful!')
+            resp.set_cookie('is_ok', True,max_age=3600*24*30*3)
+            return resp
+
+
+
         else:
             return "账户异常请重新登录"
 

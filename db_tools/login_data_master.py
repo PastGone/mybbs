@@ -2,6 +2,13 @@ from db_tools.data_master import Data_master
 
 
 class Login_data_master(Data_master):
+    # 初始化方法，需要数据库名称
+    def __init__(self, db_name, table_name='account'):
+        self.db_name = db_name
+        self.table_name = table_name
+        self.continue_init()
+
+
     def get_email(self, email):
         cursor = self.cur.execute(
             """select * from {} where email = '{}';""".format(self.table_name, email)

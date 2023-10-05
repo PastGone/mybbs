@@ -1,0 +1,8 @@
+login.db
+register.db
+__pycache__/db_tools.cpython-38.pyc
+__pycache__/
+.idea/
+*.db
+next.md
+user_data.txt

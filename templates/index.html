@@ -101,9 +101,38 @@
 
 
     </style>
+    <script>
+        function goto(id) {
+            window.location.href = "/post_list/zone_id=" + id + "/";
+        }
 
+        function getCookie(cname) {
+            const name = cname + "=";
+            const ca = document.cookie.split(';');
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i].trim();
+                if (c.indexOf(name) == 0) return c.substring(name.length, c.length);
+            }
+            return "";
+        }
+
+        function load_str() {
+            let is_ok = getCookie("is_ok");
+            if (is_ok != true) {
+                document.getElementById("str_1").innerHTML = "你当前未登录<br>请登录后体验完整功能。";
+
+            } else {
+                document.getElementById("str_1").innerHTML = "你当前已登录<br>欢迎你访问本网站。 ";
+
+            }
+
+
+        }
+
+
+    </script>
 </head>
-<body>
+<body onload="load_str()">
 <div class="container">
     <div id="html_head">
         <h1>欢迎来到我们的网站</h1>
@@ -116,10 +145,9 @@
 
     </div>
     <div>
-        <h2>{{email}}</h2>
-        <h3>{{is_ok}}</h3>
-        <!--以下是对你提供的代码段进行的优化：-->
+        <p id="str_1" >
 
+        </p>
 
         <table>
             <thead>
@@ -132,6 +160,7 @@
             </tr>
 
             </thead>
+
             {% for zone_msg in zone_list %}
             {% set name, id, count, create_time = zone_msg %}
 
@@ -148,12 +177,6 @@
     </div>
 
 </div>
-<script>
-    function goto(id) {
-        window.location.href = "/post_list/zone_id="+id+"/";
-    }
 
-
-</script>
 </body>
 </html>

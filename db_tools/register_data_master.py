@@ -1,10 +1,18 @@
 # 数据管理大师子类，注册数据管理大师
 from db_tools.data_master import Data_master
-
-fist_table_name = "USER"
+#
+# fist_table_name = "USER"
 
 
 class Register_data_master(Data_master):
+    # 初始化方法，需要数据库名称
+    def __init__(self, db_name, table_name='register'):
+        self.db_name = db_name
+        self.table_name = table_name
+        self.continue_init()
+
+
+
     # 数据管理大师 独有的 gate函数 通过 email 参数得到验证码
     def get_code_byEmail(self, email: str):
 

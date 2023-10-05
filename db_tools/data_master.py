@@ -11,15 +11,20 @@ class Data_master:
 
         return cls.instance
 
-
     # 初始化方法，需要数据库名称
     def __init__(self, db_name, table_name=''):
-        if table_name == '':
-            print("必须指定表的名称才能初始化类")
-        self.connection = sqlite3.connect(db_name, check_same_thread=False)
-        self.cur = self.connection.cursor()
         self.db_name = db_name
         self.table_name = table_name
+        self.continue_init()
+
+    def continue_init(self):
+        try:
+            self.connection = sqlite3.connect(self.db_name, check_same_thread=False)
+            self.cur = self.connection.cursor()
+        except Exception as e:
+            print("似乎好像出了点错 ")
+            print(e)
+
         if not self.is_table_live():
             self.creat_table()
 
